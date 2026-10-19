@@ -1,0 +1,152 @@
+/* ---------- Body ---------- */
+body{
+    margin:0;
+    padding:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#4facfe,#00f2fe);
+}
+
+/* ---------- Main Container ---------- */
+.container{
+    width:85%;
+    margin:40px auto;
+    background:#fff;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* ---------- Heading ---------- */
+h1{
+    text-align:center;
+    color:#1e3a8a;
+    font-size:42px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+/* ---------- Upload Box ---------- */
+.upload-box{
+    border:3px dashed #4facfe;
+    border-radius:15px;
+    padding:50px;
+    text-align:center;
+    background:#f8fbff;
+    transition:0.3s;
+}
+
+.upload-box:hover{
+    background:#eef7ff;
+}
+
+input[type="file"]{
+    margin:15px 0;
+}
+
+/* ---------- Button ---------- */
+button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 28px;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    display:block;
+    margin:20px auto;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+/* ---------- Cards ---------- */
+.box{
+    background:#fff;
+    border-radius:12px;
+    padding:20px;
+    margin-top:20px;
+    margin-bottom:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* ---------- Table ---------- */
+.table-container{
+    width:100%;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:auto;
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+/* ---------- Table Header ---------- */
+th{
+    background:#2563eb;
+    color:white;
+    padding:14px;
+    text-align:center;
+    font-size:17px;
+    font-weight:bold;
+}
+
+/* ---------- Table Data ---------- */
+td{
+    padding:12px;
+    border:1px solid #ddd;
+    text-align:center;
+    vertical-align:middle;
+    font-size:15px;
+    word-break:break-word;
+}
+
+/* ---------- Alternate Rows ---------- */
+tr:nth-child(even){
+    background:#f8f9fa;
+}
+
+tr:hover{
+    background:#eaf3ff;
+}
+
+/* ---------- Links ---------- */
+a{
+    color:#2563eb;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+/* ---------- Responsive ---------- */
+@media(max-width:768px){
+
+    .container{
+        width:95%;
+        padding:20px;
+    }
+
+    h1{
+        font-size:30px;
+    }
+
+    th,td{
+        font-size:13px;
+        padding:8px;
+    }
+
+}
