@@ -1,0 +1,77 @@
+<!DOCTYPE html><html>
+<head>
+    <title>Prediction Result</title><style>
+    body{
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg,#4facfe,#00f2fe);
+        margin:0;
+        padding:30px;
+    }
+
+    .container{
+        max-width:800px;
+        margin:auto;
+        background:white;
+        padding:30px;
+        border-radius:15px;
+        box-shadow:0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    h1{
+        text-align:center;
+    }
+
+    .real{
+        color:green;
+    }
+
+    .fake{
+        color:red;
+    }
+
+    .confidence{
+        text-align:center;
+        font-size:30px;
+        font-weight:bold;
+        color:#2196F3;
+        margin:20px 0;
+    }
+
+    ul{
+        font-size:18px;
+    }
+
+    .btn{
+        display:block;
+        text-align:center;
+        text-decoration:none;
+        background:#4CAF50;
+        color:white;
+        padding:12px;
+        border-radius:10px;
+        margin-top:20px;
+    }
+</style>
+
+</head><body><div class="container"><h1 class="{% if result == 'Real News' %}real{% else %}fake{% endif %}">
+    {{ result }}
+</h1>
+
+<div class="confidence">
+    Confidence: {{ confidence }}%
+</div>
+
+<h2>🤖 AI Explanation</h2>
+
+<ul>
+    {% for item in explanation %}
+        <li>{{ item }}</li>
+    {% endfor %}
+</ul>
+
+<a href="/manual" class="btn">
+    🔙 Check Another News
+</a>
+
+</div></body>
+</html>

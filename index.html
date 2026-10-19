@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload CSV</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>🛡️ Fake News Detection System</h1>
+    <p class="subtitle">Detect Fake News Using Machine Learning</p>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+
+        <div class="upload-box">
+            <h2>📂 Upload Dataset</h2>
+            <input type="file" name="file" required>
+            <p>Drag & Drop CSV File Here</p>
+        </div>
+
+        <button type="submit">🚀 Upload Dataset</button>
+
+    </form>
+    
+
+
+</body>
+</html>

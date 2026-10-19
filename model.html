@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake News Dashboard</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #eef2f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .full {
+            grid-column: span 2;
+        }
+
+        .scroll-box {
+            max-height: 250px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th {
+    background: #4a90e2;
+    color: white;
+    padding: 12px;
+    position: sticky;
+    top: 0;
+    text-align: center !important;
+    font-weight: bold;
+    font-size: 16px;
+}
+        table th,
+table td{
+    text-align: center !important;
+    vertical-align: middle;
+}
+
+        td {
+            padding: 6px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .confidence-box {
+            display: flex;
+            justify-content: space-between;
+            background: #f5f5f5;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+        }
+
+        .real {
+            color: green;
+            font-weight: bold;
+        }
+
+        .fake {
+            color: red;
+            font-weight: bold;
+        }
+
+        .btn-box {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background: #4a90e2;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #2d6cdf;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🧠 Fake News Detection Dashboard</h1>
+
+<div class="grid">
+
+    <!-- DATASET -->
+    <div class="card full">
+        <h2>📌 Dataset Preview</h2>
+        <div class="scroll-box">
+            {{ preview | safe }}
+        </div>
+    </div>
+
+    <!-- PREPROCESS -->
+    <div class="card">
+        <h2>⚙️ Preprocessing</h2>
+        {{ preprocessing | safe }}
+    </div>
+
+    <!-- SPLIT -->
+    <div class="card">
+        <h2>📊 Train/Test Split</h2>
+        {{ split | safe }}
+    </div>
+
+    <!-- MODEL -->
+    <div class="card full">
+        <h2>🤖 Model Status</h2>
+        {{ model | safe }}
+    </div>
+
+    <!-- PIE CHART -->
+    <div class="card">
+        <h2>📊 Fake vs Real Chart</h2>
+        <canvas id="pieChart"></canvas>
+    </div>
+
+    <!-- ACCURACY CHART -->
+    <div class="card">
+        <h2>📈 Accuracy Graph</h2>
+        <canvas id="accChart"></canvas>
+    </div>
+
+    <!-- CONFIDENCE -->
+    <div class="card full">
+        <h2>🧠 Confidence Preview</h2>
+
+        {% for item in confidence %}
+        <div class="confidence-box">
+            <div class="real">🟢 Real: {{ item.real_confidence }}%</div>
+            <div class="fake">🔴 Fake: {{ item.fake_confidence }}%</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- RESULT BUTTON -->
+    <div class="card full btn-box">
+        <h2>🎯 Final Result</h2>
+        <a href="/result" class="btn">👉 Go to Result Page</a>
+    </div>
+
+</div>
+
+<script>
+const pieData = {{ pie_chart | tojson }} ;
+
+new Chart(document.getElementById("pieChart"), {
+    type: "pie",
+    data: {
+        labels: pieData.data.map(x => x.type),
+        datasets: [{
+            data: pieData.data.map(x => x.count),
+            backgroundColor: ["#4CAF50", "#F44336"]
+        }]
+    }
+});
+
+const accuracyData = {{ accuracy_chart | tojson }};
+
+new Chart(document.getElementById("accChart"), {
+    type: "bar",
+    data: {
+        labels: ["Accuracy"],
+        datasets: [{
+            label: "Model Accuracy (%)",
+            data: [accuracyData.data[0].value],
+            backgroundColor: "#4a90e2"
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100
+            }
+        }
+    }
+});
+</script>
+            
+
+
+
+</body>
+</html>

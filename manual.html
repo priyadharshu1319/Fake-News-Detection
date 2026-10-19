@@ -1,0 +1,81 @@
+<!DOCTYPE html><html>
+<head>
+    <title>Manual News Prediction</title><style>
+    body{
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg,#667eea,#764ba2);
+        margin:0;
+        padding:30px;
+    }
+
+    .container{
+        max-width:800px;
+        margin:auto;
+        background:white;
+        padding:30px;
+        border-radius:15px;
+        box-shadow:0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    h1{
+        text-align:center;
+        color:#333;
+        margin-bottom:20px;
+    }
+
+    textarea{
+        width:100%;
+        padding:15px;
+        border:1px solid #ccc;
+        border-radius:10px;
+        font-size:16px;
+        resize:vertical;
+        box-sizing:border-box;
+    }
+
+    button{
+        width:100%;
+        padding:15px;
+        background:#4CAF50;
+        color:white;
+        border:none;
+        border-radius:10px;
+        font-size:18px;
+        cursor:pointer;
+    }
+
+    button:hover{
+        background:#45a049;
+    }
+
+    .info{
+        text-align:center;
+        color:#666;
+        margin-bottom:20px;
+    }
+</style>
+
+</head><body><div class="container"><h1>📰 Manual News Prediction</h1>
+
+<p class="info">
+    Enter any news content below and check whether it is Real or Fake.
+</p>
+
+<form action="/predict_manual" method="POST">
+
+    <textarea
+        name="news"
+        rows="10"
+        placeholder="Paste or type news content here..."
+        required></textarea>
+
+    <br><br>
+
+    <button type="submit">
+        🔍 Predict News
+    </button>
+
+</form>
+
+</div></body>
+</html>
